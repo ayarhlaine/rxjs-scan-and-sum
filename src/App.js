@@ -1,6 +1,6 @@
 import React from 'react';
-import { fromEvent } from "rxjs";
-import { scan, mergeMap } from "rxjs/operators";
+import { fromEvent, merge } from "rxjs";
+import { scan, mergeMap, mapTo, startWith } from "rxjs/operators";
 import './App.scss';
 const seed = {
   type: "Sample",
@@ -15,9 +15,11 @@ export default function App() {
     return formatedValue;
   };
   React.useEffect(() => {
-    const button = document.querySelector("button");
-    const clicks = fromEvent(button, "click");
-    const data$ = clicks.pipe(
+    const sendButton = document.querySelector("#send");
+    const resetButton = document.querySelector("#reset");
+    const clickSendButton$ = fromEvent(sendButton, "click");
+    const clickResetButton$ = fromEvent(resetButton, "click");
+    const data$ = clickSendButton$.pipe(
       mergeMap(
         () =>
           new Promise((resolve) =>
@@ -28,19 +30,29 @@ export default function App() {
           )
       )
     );
-    const sum$ = data$.pipe(
+    const resetData$ = clickResetButton$.pipe(
+      mapTo({
+        type: "Sample",
+        data: 0,
+        reset: true,
+      })
+    );
+    const sum$ = merge(data$ , resetData$).pipe(
+      startWith(seed),
       scan(
         (acc, currentValue) => ({
           type: "Sample",
-          data: acc.data + currentValue.data
-        }),
-        seed
+          data: currentValue.reset ? 0: acc.data + currentValue.data,
+        })
       )
     );
     const rawHistory$ = data$.pipe(
       scan((acc, currentValue) => [...acc, currentValue], [])
     );
-    sum$.subscribe((x) => setLatestData(x));
+    sum$.subscribe((x) => {
+      console.log(x);
+      setLatestData(x);
+    });
     rawHistory$.subscribe((x) => setRawHistories(x));
     return () => {
       if (sum$) {
@@ -58,7 +70,10 @@ export default function App() {
       <input type="number" id="input" placeholder="Fill a number"/>
       <br />
       <br />
-      <button id="button">Click to send next data</button>
+      <button id="send">Click to send next data</button>
+      <br/>
+      <br/>
+      <button id="reset">Reset</button>
       <br />
       <br />
       <div>
