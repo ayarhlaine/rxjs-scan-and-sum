@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/rxjs-scan-and-sum/static/css/main.9aee8e6a.chunk.css",
+    "main.js": "/rxjs-scan-and-sum/static/js/main.b4027bc6.chunk.js",
+    "main.js.map": "/rxjs-scan-and-sum/static/js/main.b4027bc6.chunk.js.map",
+    "runtime-main.js": "/rxjs-scan-and-sum/static/js/runtime-main.75446b30.js",
+    "runtime-main.js.map": "/rxjs-scan-and-sum/static/js/runtime-main.75446b30.js.map",
+    "static/js/2.edeedd85.chunk.js": "/rxjs-scan-and-sum/static/js/2.edeedd85.chunk.js",
+    "static/js/2.edeedd85.chunk.js.map": "/rxjs-scan-and-sum/static/js/2.edeedd85.chunk.js.map",
+    "index.html": "/rxjs-scan-and-sum/index.html",
+    "precache-manifest.b3ee91d50913471ff188dcfd015b6588.js": "/rxjs-scan-and-sum/precache-manifest.b3ee91d50913471ff188dcfd015b6588.js",
+    "service-worker.js": "/rxjs-scan-and-sum/service-worker.js",
+    "static/css/main.9aee8e6a.chunk.css.map": "/rxjs-scan-and-sum/static/css/main.9aee8e6a.chunk.css.map",
+    "static/js/2.edeedd85.chunk.js.LICENSE.txt": "/rxjs-scan-and-sum/static/js/2.edeedd85.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.75446b30.js",
+    "static/js/2.edeedd85.chunk.js",
+    "static/css/main.9aee8e6a.chunk.css",
+    "static/js/main.b4027bc6.chunk.js"
+  ]
+}
